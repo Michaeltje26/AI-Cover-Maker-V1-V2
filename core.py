@@ -368,7 +368,7 @@ def full_inference_program(
         )
     if not fp16:
         with open(model_info["config"], "r") as file:
-            config = yaml.safe_load(file)
+            config = yaml.load(file, Loader=yaml.FullLoader)
 
         config["training"]["use_amp"] = False
 
@@ -1021,3 +1021,4 @@ def download_music(link):
     ]
     subprocess.run(command)
     return "Music downloaded with success"
+
